@@ -5,13 +5,14 @@
 ###################################################
 
 services:
-  actual-development:
-    build: .
-    image: actual-development
-    environment:
-      - HTTPS
+  actual_server:
+    image: actualbudget/actual-server:latest
     ports:
-      - '3001:3001'
+      - '5006:5006'
     volumes:
-      - '.:/app'
-    restart: 'no'
+      - ./actual-data:/data
+      - ./certs:/certs # Monta la cartella dei certificati
+    environment:
+      - ACTUAL_HTTPS_KEY=/certs/actual.key
+      - ACTUAL_HTTPS_CERT=/certs/actual.crt
+    restart: unless-stopped

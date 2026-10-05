@@ -116,3 +116,9 @@ storybook-static
 .actualrc.yaml
 .actualrc.yml
 actual.config.js
+
+# certs
+certs/*
+
+# data
+actual-data/*
